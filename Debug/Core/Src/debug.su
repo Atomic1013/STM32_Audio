@@ -1,9 +1,0 @@
-../Core/Src/debug.c:29:6:DebugInit	16	static
-../Core/Src/debug.c:37:5:_getpid	4	static
-../Core/Src/debug.c:42:5:_kill	16	static
-../Core/Src/debug.c:50:5:_isatty	16	static
-../Core/Src/debug.c:58:5:_write	32	static
-../Core/Src/debug.c:72:5:_close	16	static
-../Core/Src/debug.c:80:5:_lseek	24	static
-../Core/Src/debug.c:89:5:_read	32	static
-../Core/Src/debug.c:103:5:_fstat	16	static
