@@ -31,7 +31,7 @@
 /* USER CODE BEGIN Includes */
 #include "debug.h"
 #include "stdio.h"
-#include "wm8978.h"
+#include "Audio/wm8978.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
