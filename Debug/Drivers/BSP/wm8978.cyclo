@@ -1,0 +1,17 @@
+../Drivers/BSP/wm8978.c:33:26:WM8978_I2C_WriteRegister	2
+../Drivers/BSP/wm8978.c:51:17:WM8978_ReadReg	1
+../Drivers/BSP/wm8978.c:62:26:WM8978_WriteReg	1
+../Drivers/BSP/wm8978.c:74:19:WM8978_Init	1
+../Drivers/BSP/wm8978.c:88:6:WM8978_SetOUT1Volume	2
+../Drivers/BSP/wm8978.c:117:6:WM8978_SetOUT2Volume	2
+../Drivers/BSP/wm8978.c:146:9:WM8978_ReadOUT1Volume	1
+../Drivers/BSP/wm8978.c:156:9:WM8978_ReadOUT2Volume	1
+../Drivers/BSP/wm8978.c:168:6:WM8978_OutMute	2
+../Drivers/BSP/wm8978.c:215:6:WM8978_SetMicGain	2
+../Drivers/BSP/wm8978.c:237:6:WM8978_SetLineGain	2
+../Drivers/BSP/wm8978.c:276:6:WM8978_PowerDown	1
+../Drivers/BSP/wm8978.c:287:6:WM8978_CfgAudioIF	6
+../Drivers/BSP/wm8978.c:348:6:WM8978_CfgAudioPath	40
+../Drivers/BSP/wm8978.c:721:6:WM8978_NotchFilter	1
+../Drivers/BSP/wm8978.c:751:6:WM8978_CtrlGPIO1	2
+../Drivers/BSP/wm8978.c:771:19:WM8978_Reset	2

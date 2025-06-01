@@ -1,0 +1,9 @@
+../Core/Src/debug.c:29:6:DebugInit	1
+../Core/Src/debug.c:37:5:_getpid	1
+../Core/Src/debug.c:42:5:_kill	1
+../Core/Src/debug.c:50:5:_isatty	3
+../Core/Src/debug.c:58:5:_write	4
+../Core/Src/debug.c:72:5:_close	3
+../Core/Src/debug.c:80:5:_lseek	1
+../Core/Src/debug.c:89:5:_read	3
+../Core/Src/debug.c:103:5:_fstat	3
