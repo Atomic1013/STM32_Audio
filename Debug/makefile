@@ -68,8 +68,8 @@ all: main-build
 main-build: H743XI_WM8978_1.elf secondary-outputs
 
 # 工具调用
-H743XI_WM8978_1.elf H743XI_WM8978_1.map: $(OBJS) $(USER_OBJS) D:\HAL\WS_7\H743XI_WM8978_1\STM32H743XIHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "H743XI_WM8978_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\HAL\WS_7\H743XI_WM8978_1\STM32H743XIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="H743XI_WM8978_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+H743XI_WM8978_1.elf H743XI_WM8978_1.map: $(OBJS) $(USER_OBJS) D:\GitHub\STM32_Audio\STM32H743XIHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "H743XI_WM8978_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\GitHub\STM32_Audio\STM32H743XIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="H743XI_WM8978_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo '已结束构建目标： $@'
 	@echo ' '
 

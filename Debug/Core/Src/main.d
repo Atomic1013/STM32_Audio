@@ -44,7 +44,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h \
  ../Core/Inc/i2c.h ../Core/Inc/memorymap.h ../Core/Inc/sai.h \
  ../Core/Inc/sdmmc.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
- ../Core/Inc/debug.h D:/HAL/WS_7/H743XI_WM8978_1/Drivers/BSP/wm8978.h
+ ../Core/Inc/debug.h D:/GitHub/STM32_Audio/Drivers/BSP/wm8978.h
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -101,4 +101,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/usart.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/debug.h:
-D:/HAL/WS_7/H743XI_WM8978_1/Drivers/BSP/wm8978.h:
+D:/GitHub/STM32_Audio/Drivers/BSP/wm8978.h:
