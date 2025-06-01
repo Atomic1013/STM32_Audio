@@ -198,11 +198,6 @@ int main(void)
   res = f_closedir(&dir);
   if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
 
-//  for (int i = 0; i < 4096/4; ++i)
-//  {
-//	  Date[i*4+1] = 0xFF00;
-//	  Date[i*4] = i;
-//  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
