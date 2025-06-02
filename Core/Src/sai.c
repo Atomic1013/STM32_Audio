@@ -77,8 +77,8 @@ void HAL_SAI_MspInit(SAI_HandleTypeDef* saiHandle)
   */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SAI1;
     PeriphClkInitStruct.PLL2.PLL2M = 25;
-    PeriphClkInitStruct.PLL2.PLL2N = 479;
-    PeriphClkInitStruct.PLL2.PLL2P = 39;
+    PeriphClkInitStruct.PLL2.PLL2N = 307;
+    PeriphClkInitStruct.PLL2.PLL2P = 25;
     PeriphClkInitStruct.PLL2.PLL2Q = 2;
     PeriphClkInitStruct.PLL2.PLL2R = 2;
     PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_0;
@@ -95,7 +95,7 @@ void HAL_SAI_MspInit(SAI_HandleTypeDef* saiHandle)
        __HAL_RCC_SAI1_CLK_ENABLE();
 
     /* Peripheral interrupt init*/
-    HAL_NVIC_SetPriority(SAI1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(SAI1_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(SAI1_IRQn);
     }
     SAI1_client ++;

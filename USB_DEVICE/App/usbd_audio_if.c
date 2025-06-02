@@ -22,7 +22,7 @@
 #include "usbd_audio_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "sai.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -186,9 +186,11 @@ static int8_t AUDIO_AudioCmd_FS(uint8_t* pbuf, uint32_t size, uint8_t cmd)
   switch(cmd)
   {
     case AUDIO_CMD_START:
+    	HAL_SAI_Transmit_DMA(&hsai_BlockA1, pbuf, size);
     break;
 
     case AUDIO_CMD_PLAY:
+    	HAL_SAI_Transmit_DMA(&hsai_BlockA1, pbuf, size);
     break;
   }
   UNUSED(pbuf);

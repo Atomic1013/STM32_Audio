@@ -33,6 +33,7 @@
 #include "debug.h"
 #include "stdio.h"
 #include "Audio/wm8978.h"
+#include "usbd_audio_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -151,54 +152,54 @@ int main(void)
   WM8978_CfgAudioIF(SAI_I2S_STANDARD, 16);
 
 
-  res = f_mount(&fs, "0:", 1);
-  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
-
-  res = f_opendir(&dir, "0:");
-  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
-
-  res = f_readdir(&dir, &fno);
-  while(res == FR_OK && fno.fname[0])
-  {
-	  printf("%s\n",fno.fname);
-	  res = f_readdir(&dir, &fno);
-  }
-
-  res = f_open(&file, "music.wav", FA_READ);
-  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
-
-  res = f_read(&file, BuffHead, PLAY_HEADER, &br);
-  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
-//  printf("读取了:0x%X个字节\n",br);
-  for (int i = 0; i < br; ++i)
-  {
-	  printf("0x%02X ",BuffHead[i]);
-  }
-
-  uint32_t Date_Size = (uint32_t)BuffHead[0x2B]<<24 | (uint32_t)BuffHead[0x2A]<<16 | (uint32_t)BuffHead[0x29]<<8 | BuffHead[0x28];
-  printf("\n数据量:0x%lX\n",Date_Size);
-  printf("时长 %d:%02d\n",(uint8_t)(Date_Size/(2*44100*16/8) / 60),(uint8_t)(Date_Size/(2*44100*16/8) % 60));
-
-  res = f_read(&file, (uint8_t *)PlayBuff_0, PLAY_BUFF_SIZE * 2, &br);
-  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
-  HAL_SAI_Transmit_DMA(&hsai_BlockA1, (uint8_t*)PlayBuff_0, PLAY_BUFF_SIZE * 2);
-
-  while (1)
-  {
-	  while (SAI_Sate == 1);
-	  res = f_read(&file, (uint8_t *)PlayBuff_1, PLAY_BUFF_SIZE * 2, &br);
-	  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
-	  if(br < PLAY_BUFF_SIZE * 2) {printf("结束\n");f_lseek(&file, 0);}
-
-	  while (SAI_Sate == 0);
-	  res = f_read(&file, (uint8_t *)PlayBuff_0, PLAY_BUFF_SIZE * 2, &br);
-	  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
-	  if(br < PLAY_BUFF_SIZE * 2) {printf("结束\n");f_lseek(&file, 0);}
-
-  }
-
-  res = f_closedir(&dir);
-  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+//  res = f_mount(&fs, "0:", 1);
+//  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+//
+//  res = f_opendir(&dir, "0:");
+//  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+//
+//  res = f_readdir(&dir, &fno);
+//  while(res == FR_OK && fno.fname[0])
+//  {
+//	  printf("%s\n",fno.fname);
+//	  res = f_readdir(&dir, &fno);
+//  }
+//
+//  res = f_open(&file, "music.wav", FA_READ);
+//  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+//
+//  res = f_read(&file, BuffHead, PLAY_HEADER, &br);
+//  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+////  printf("读取了:0x%X个字节\n",br);
+//  for (int i = 0; i < br; ++i)
+//  {
+//	  printf("0x%02X ",BuffHead[i]);
+//  }
+//
+//  uint32_t Date_Size = (uint32_t)BuffHead[0x2B]<<24 | (uint32_t)BuffHead[0x2A]<<16 | (uint32_t)BuffHead[0x29]<<8 | BuffHead[0x28];
+//  printf("\n数据量:0x%lX\n",Date_Size);
+//  printf("时长 %d:%02d\n",(uint8_t)(Date_Size/(2*44100*16/8) / 60),(uint8_t)(Date_Size/(2*44100*16/8) % 60));
+//
+//  res = f_read(&file, (uint8_t *)PlayBuff_0, PLAY_BUFF_SIZE * 2, &br);
+//  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+//  HAL_SAI_Transmit_DMA(&hsai_BlockA1, (uint8_t*)PlayBuff_0, PLAY_BUFF_SIZE * 2);
+//
+//  while (1)
+//  {
+//	  while (SAI_Sate == 1);
+//	  res = f_read(&file, (uint8_t *)PlayBuff_1, PLAY_BUFF_SIZE * 2, &br);
+//	  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+//	  if(br < PLAY_BUFF_SIZE * 2) {printf("结束\n");f_lseek(&file, 0);}
+//
+//	  while (SAI_Sate == 0);
+//	  res = f_read(&file, (uint8_t *)PlayBuff_0, PLAY_BUFF_SIZE * 2, &br);
+//	  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
+//	  if(br < PLAY_BUFF_SIZE * 2) {printf("结束\n");f_lseek(&file, 0);}
+//
+//  }
+//
+//  res = f_closedir(&dir);
+//  if(res) {printf("%s(%d),错误码:%d\n",__FILE__, __LINE__,res);while(1);}
 
   /* USER CODE END 2 */
 
@@ -274,19 +275,35 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+//void HAL_SAI_TxCpltCallback(SAI_HandleTypeDef *hsai)
+//{
+////	printf("%d\n",SAI_Time++);
+//	if(SAI_Sate == 0)
+//	{
+//		HAL_SAI_Transmit_DMA(&hsai_BlockA1, (uint8_t*)PlayBuff_1, PLAY_BUFF_SIZE);
+//		SAI_Sate = 1;
+//	}
+//	else if(SAI_Sate == 1)
+//	{
+//		HAL_SAI_Transmit_DMA(&hsai_BlockA1, (uint8_t*)PlayBuff_0, PLAY_BUFF_SIZE);
+//		SAI_Sate = 0;
+//	}
+//}
+
 void HAL_SAI_TxCpltCallback(SAI_HandleTypeDef *hsai)
 {
-//	printf("%d\n",SAI_Time++);
-	if(SAI_Sate == 0)
-	{
-		HAL_SAI_Transmit_DMA(&hsai_BlockA1, (uint8_t*)PlayBuff_1, PLAY_BUFF_SIZE);
-		SAI_Sate = 1;
-	}
-	else if(SAI_Sate == 1)
-	{
-		HAL_SAI_Transmit_DMA(&hsai_BlockA1, (uint8_t*)PlayBuff_0, PLAY_BUFF_SIZE);
-		SAI_Sate = 0;
-	}
+//	if(hsai->Instance == SAI1_Block_A)
+//	{
+		TransferComplete_CallBack_FS();
+//	}
+}
+
+void HAL_SAI_TxHalfCpltCallback(SAI_HandleTypeDef *hsai)
+{
+//	if(hsai->Instance == SAI1_Block_A)
+//	{
+		HalfTransfer_CallBack_FS();
+//	}
 }
 /* USER CODE END 4 */
 
